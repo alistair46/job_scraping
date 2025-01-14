@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <h1>Find Your Dream Job</h1>
+    </header>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search job title..." id="job-title">
+            <input type="text" placeholder="Location..." id="location">
+            <button id="search-button">Search</button>
+        </div>
+
+        <div id="job-container">
+            <table id="job-table">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Skills Required</th>
+                        <th>Location</th>
+                        <th>Date Posted</th>
+                        <th>Experience Required</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will be added here -->
+                </tbody>
+            </table>
+            <p class="no-data" id="no-data-message" style="display: none;">No jobs found for the given criteria.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 JobFinder. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Example job data (replace this with actual backend data)
+        const jobData = [
+            
+        ];
+
+        const tableBody = document.querySelector('#job-table tbody');
+        const noDataMessage = document.getElementById('no-data-message');
+
+        function populateJobs(data) {
+            if (data.length > 0) {
+                data.forEach(job => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${job['Company Name']}</td>
+                        <td>${job['Skills Required']}</td>
+                        <td>${job['Location']}</td>
+                        <td>${job['Date Posted']}</td>
+                        <td>${job['Experience Required']}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } else {
+                noDataMessage.style.display = 'block';
+                document.getElementById('job-table').style.display = 'none';
+            }
+        }
+
+        // Initial population of job data
+        populateJobs(jobData);
+
+        // Event listener for search button (add functionality as needed)
+        document.getElementById('search-button').addEventListener('click', () => {
+            alert("Search functionality is not implemented yet!");
+        });
+    </script>
+</body>
+</html>
