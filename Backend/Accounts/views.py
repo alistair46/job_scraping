@@ -6,11 +6,11 @@ from django.http import HttpResponse
 
 def Home(request):
     return render(request, "Accounts/home.html")
-    #return HttpResponse("You're looking at question %s.")
+    
 
 
 def Signup(request):
-    pass
+    return render(request, "Accounts/signup.html")
 
 def login(request):
-    pass
+    return render(request, "Accounts/login.html")
