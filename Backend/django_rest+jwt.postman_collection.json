@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "77d622e5-a455-4137-aa35-2eb02d7479fd",
+		"name": "django_rest+jwt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34265230"
+	},
+	"item": [
+		{
+			"name": "User_resistration",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "f3b645f6-3c01-45e0-893a-dc93e9e929e2"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"aefrancis12@gmail.com\",\r\n    \"Name\": \"alistair\",\r\n    \"password\":\"123456\",\r\n    \"password2\":\"123456\",\r\n    \"TC\":\"True\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<div>\r",
+							"    <h3>Error</h3>\r",
+							"    <p>{{response.errors.non_field_errors}}</p>\r",
+							"</div>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()};\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "b6403c45-6e37-42a7-95bb-eae917a508d1"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"email\":\"aefrancis12@gmail.com\",\r\n \"password\":\"123456\"\r\n\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "4767bc67-1046-4455-a1df-dd6d3d2717c4"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEzNjkyOTkyLCJpYXQiOjE3MTM2OTE3OTIsImp0aSI6IjRjMjg3MDJmZDdkZjRkZjlhYTkwZDcxMGNiNTc2MWY5IiwidXNlcl9pZCI6Mn0.oxZsmPJAfWpn6PrhXKl0R7dCf22reVgLlTgfxsGSqoc",
+						"type": "text",
+						"uuid": "36e107d8-4da7-4302-8bc7-8a82a33a2da3"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/profile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "forgot password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<div>\r",
+							"    <h3>Error Detail</h3>\r",
+							"    <p>{{response.error.detail}}</p>\r",
+							"</div>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "7b2c5f39-600d-4137-99ab-0e1e41608c61"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MTQzMjQzLCJpYXQiOjE3MTQxNDIwNDMsImp0aSI6Ijc5M2Y0YmFjMWI0ZDQ5OTBiMWQ4ZjFmYzMzYmZiNTJiIiwidXNlcl9pZCI6Mn0.VLZg4SMnitU4Rt_Kui54rRZm8z3TIdkK_VibvBiSxF4",
+						"type": "text",
+						"uuid": "04550432-1b66-4ed9-8c56-c7b25bb72ad8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\":\"123456789\",\r\n    \"password2\":\"123456789\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/ForgotPassword/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"ForgotPassword",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset_password request mail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "4ca06730-bc20-4222-8aec-b311e347df24"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"aefrancis12@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/ResetMail/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"ResetMail",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "f774479c-2aa3-4cfc-8735-14c0223f7dd8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\":\"hello123\",\r\n    \"password2\":\"hello123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/ResetPassword/Mg/c63xig-75693b251cb7543eb327b99f7f2767f4/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"ResetPassword",
+						"Mg",
+						"c63xig-75693b251cb7543eb327b99f7f2767f4",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
