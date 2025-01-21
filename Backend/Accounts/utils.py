@@ -1,4 +1,5 @@
 from django.core.mail import EmailMessage
+from django.core.mail import send_mail
 from Backend import settings
 
 

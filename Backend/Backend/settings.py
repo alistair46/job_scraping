@@ -173,12 +173,16 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
-PASSWORD_REST_TIMEOUT=900  #900sec == 15 min
+# email link valid for 15 min
+PASSWORD_REST_TIMEOUT=900  # 900sec == 15 min
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST='smtp.gmail.com'
-# EMAIL_PORT=587
-# EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
-# EMAIL_USE_TLS=True
-# EMAIL_USE_SSL=False
+# Email Setup
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
+# print(EMAIL_HOST_USER)
+# print(EMAIL_HOST_PASSWORD)
+EMAIL_USE_TLS=True
+EMAIL_USE_SSL=False
