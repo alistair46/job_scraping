@@ -31,7 +31,7 @@ class UserResistrationView(APIView):
             token = get_tokens_for_user(user)  # Generate token for the user
 # Redirect to login page for browser-based requests
             if request.headers.get('Content-Type') != 'application/json':
-                return redirect('login')  # Replace 'login' with the actual name of your login URL
+                return redirect('login')  
 # Return API response for JSON requests
             return Response({'token': token, 'message': 'Registration Successful!!'}, status=status.HTTP_201_CREATED)
 # Handle validation errors
