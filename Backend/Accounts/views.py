@@ -1,7 +1,9 @@
-# from django.shortcuts import render
+from django.shortcuts import render,redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserResistrationSerializer ,UserLoginSerializers ,ProfileSerializers ,ForgotUserPasswordSerializer ,SendPasswordResetEmailSerializer,UserPasswordRestSerializer
+from .serializers import (UserResistrationSerializer ,UserLoginSerializers ,
+                          ProfileSerializers ,ForgotUserPasswordSerializer ,
+                          SendPasswordResetEmailSerializer,UserPasswordRestSerializer)
 from rest_framework import status
 from django.contrib.auth import authenticate
 from Accounts.renderers import UserRenderer
@@ -12,27 +14,36 @@ from rest_framework.permissions import IsAuthenticated
 #To generate token manually
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
+    return {'refresh': str(refresh),'access': str(refresh.access_token),}
 
-    return {
-        'refresh': str(refresh),
-        'access': str(refresh.access_token),
-    }
 
 class UserResistrationView(APIView):
-    renderer_classes=[UserRenderer] # for frontend to show error
-    def post(self,request,format=None):
-        serializer=UserResistrationSerializer(data=request.data)
+    renderer_classes = [UserRenderer]  # For frontend to show error messages
+# Render the signup form
+    def get(self, request):
+        return render(request, "Accounts/signup.html")
+# Handle form submission
+    def post(self, request, format=None):
+        serializer = UserResistrationSerializer(data=request.data)
+        print(serializer)
         if serializer.is_valid(raise_exception=True):
-            user=serializer.save()
-# generate token after user is saved 
-            token=get_tokens_for_user(user)  
-# sending token as response          
-            return Response({'token':token,'message':'Registration Sucessfull !!'}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+            user = serializer.save()
+            token = get_tokens_for_user(user)  # Generate token for the user
+# Redirect to login page for browser-based requests
+            if request.headers.get('Content-Type') != 'application/json':
+                return redirect('login')  # Replace 'login' with the actual name of your login URL
+# Return API response for JSON requests
+            return Response({'token': token, 'message': 'Registration Successful!!'}, status=status.HTTP_201_CREATED)
+# Handle validation errors
+        if request.headers.get('Content-Type') != 'application/json':
+            return render(request, "Accounts/signup.html", {"errors": serializer.errors})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserLoginView(APIView):
     renderer_classes=[UserRenderer] # for frontend to show error
+    def get(self,request):
+        return render (request, "Accounts/login.html")
     def post(self,request,format=None):
         serializer=UserLoginSerializers(data=request.data)
 # Here we are authenitcate user using django authenticate method  where we pass email and password to get verified
@@ -42,18 +53,28 @@ class UserLoginView(APIView):
             user = authenticate(email=email,password=password)
             if user is not None:
                 token=get_tokens_for_user(user)
-                return Response({'token':token,'message':'login Sucessfull !!'}, status=status.HTTP_200_OK)
-            else:
-               return Response({'errors':{'non_field_errors':['email or password is not valid']}},status=status.HTTP_404_NOT_FOUND) 
+# Redirect to dashboard for browser-based requests
+                if request.headers.get('Content-Type') != 'application/json':
+                    return redirect('HomePage') 
+# Return API response for JSON requests
+                return Response(
+                    {'token': token, 'message': 'Login Successful!!'},status=status.HTTP_200_OK)
+# Invalid credentials
+            if request.headers.get('Content-Type') != 'application/json':
+                return render(request, "Accounts/login.html", {
+                    "errors": {"non_field_errors": ["Email or password is not valid"]}})
+            return Response(
+                {'errors': {'non_field_errors': ['Email or password is not valid']}},status=status.HTTP_404_NOT_FOUND)
+# Handle serializer errors
+        if request.headers.get('Content-Type') != 'application/json':
+            return render(request, "Accounts/login.html", {"errors": serializer.errors})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+                
 class ProfileView(APIView):
     renderer_classes=[UserRenderer]
     permission_classes=[IsAuthenticated]
     def get(self,request):
         serializer= ProfileSerializers(request.user)
-        #if serializer.is_valid():
-            #return Response (serializer.data,status=status.HTTP_200_OK)
         return Response (serializer.data,status=status.HTTP_200_OK)
     
 # Forgot password 
@@ -83,22 +104,6 @@ class UserPasswordRestview(APIView):
             return Response({'message':'password reset sucessfull !!!.'}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-
-
-'''from django.shortcuts import render
-from django.http import HttpResponse
-
-
-# Create your views here.
-
 def Home(request):
     return render(request, "Accounts/home.html")
     
-
-
-def Signup(request):
-    return render(request, "Accounts/signup.html")
-
-def login(request):
-    return render(request, "Accounts/login.html")
-'''

@@ -10,6 +10,7 @@ from Accounts import utils
 
 class UserResistrationSerializer(serializers.ModelSerializer):
 #We are writing this bcos we need to confirm password field in our Registration Request
+    password=serializers.CharField(style={'input_type':'password'}, write_only=True)
     password2=serializers.CharField(style={'input_type':'password'}, write_only=True)
     class Meta:
         model=User
