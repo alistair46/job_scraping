@@ -1,6 +1,6 @@
 # job_scraping
 
-Sure! Below is a complete single-file version of the README with all the relevant information:
+
 
 ```markdown
 # Django Authentication API
@@ -28,7 +28,7 @@ This is a Django-based web application that handles user authentication, includi
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/yourrepository.git
+   git clone https://github.com/alistair46/job_scraping.git
    ```
 
 2. Navigate to the project directory:
