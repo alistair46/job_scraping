@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static  %}
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static "../static/css/main.css" %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">{% block h2  %}<h2>MyWebsite</h2>{% endblock h2  %}</div>
+        <div>
+            <a href="/">Home</a>
+            <a href="">About</a>
+            <a href="">Services</a>
+            <a href="">Contact</a>
+            <!-- Logout Button -->
+            <a href="/logout" onclick="logout()">Logout</a>
+        </div>
+    </nav>
+    {% block body %}  body   {% endblock body %}
+    {% block script %}{% endblock script %}
+</body>
+
+</html>

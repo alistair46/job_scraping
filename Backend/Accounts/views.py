@@ -156,7 +156,7 @@ class UserPasswordRestview(APIView):
 @login_required(login_url='/api/login')  # Redirect to login page if not logged in       
 def Home(request):
     user_name = request.session.get('user_name', 'User')  # Retrieve from session
-    return render(request, "Accounts/home.html", {"username": user_name})
+    return render(request, "Accounts/home2.html", {"username": user_name})
 
 
 #*### Logout Class to logout user ####
@@ -186,3 +186,8 @@ class LogoutUser(APIView):
             except Exception as e:
                 return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+#! demo function delete after testing
+def demo(request):
+    return render(request, "Accounts/base.html")
