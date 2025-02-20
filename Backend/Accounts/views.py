@@ -12,8 +12,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated 
 from django.core.exceptions import PermissionDenied
 
-
-
 #To generate token manually
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -41,40 +39,6 @@ class UserResistrationView(APIView):
         if request.headers.get('Content-Type') != 'application/json':
             return render(request, "Accounts/signup.html", {"errors": serializer.errors})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-"""class UserLoginView(APIView):
-    renderer_classes=[UserRenderer] # for frontend to show error
-    def get(self,request):
-        return render (request, "Accounts/login.html")
-    def post(self,request,format=None):
-        serializer=UserLoginSerializers(data=request.data)
-# Here we are authenitcate user using django authenticate method  where we pass email and password to get verified
-        if (serializer.is_valid(raise_exception=True)):
-            email=serializer.data.get('email')
-            password=serializer.data.get('password')
-            user = authenticate(email=email,password=password)
-            if user is not None:
-                token=get_tokens_for_user(user)
-#!#################### Print the tokens in the terminal for debugging ######################################
-                print("Access Token:", token['access'])
-                print("Refresh Token:", token['refresh'])
-# Redirect to dashboard for browser-based requests
-                if request.headers.get('Content-Type') != 'application/json':
-                    return redirect('HomePage') 
-# Return API response for JSON requests
-                return Response(
-                    {'token': token, 'message': 'Login Successful!!'},status=status.HTTP_200_OK)
-# Invalid credentials
-            if request.headers.get('Content-Type') != 'application/json':
-                return render(request, "Accounts/login.html", {
-                    "errors": {"non_field_errors": ["Email or password is not valid"]}})
-            return Response(
-                {'errors': {'non_field_errors': ['Email or password is not valid']}},status=status.HTTP_404_NOT_FOUND)
-# Handle serializer errors
-        if request.headers.get('Content-Type') != 'application/json':
-            return render(request, "Accounts/login.html", {"errors": serializer.errors})
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)"""
 
 class UserLoginView(APIView):
     renderer_classes = [UserRenderer]
@@ -156,12 +120,12 @@ class UserPasswordRestview(APIView):
 @login_required(login_url='/api/login')  # Redirect to login page if not logged in       
 def Home(request):
     user_name = request.session.get('user_name', 'User')  # Retrieve from session
-    return render(request, "Accounts/home2.html", {"username": user_name})
+    return render(request, "Accounts/home.html", {"username": user_name})
 
 
-#*### Logout Class to logout user ####
+#!### Logout Class to logout user ####
 #! logout thorugh post man shows logout sucessfull but in browser the user still seams logined 
-# todo after clearing browser cookies the user seemes logout
+#!  after clearing browser cookies the user seemes logout
 class LogoutUser(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -180,6 +144,9 @@ class LogoutUser(APIView):
                 # Clear the session to log out the user
                 request.session.flush()  # This will clear the session
 
+                if request.headers.get('Content-Type') != 'application/json':
+                    return redirect('login')
+
                 # Respond back with success
                 return Response({"message": "Logout successful!"}, status=status.HTTP_200_OK)
 
@@ -188,6 +155,5 @@ class LogoutUser(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-#! demo function delete after testing
-def demo(request):
-    return render(request, "Accounts/base.html")
+def Aboutus(request):
+    return render(request, "Accounts/aboutus.html")

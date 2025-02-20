@@ -4,7 +4,7 @@ from Accounts import views
 
 urlpatterns = [
     path('', views.Home ,name="HomePage"),
-    path('demo/', views.demo, name="demo"),
+    path('Aboutus/', views.Aboutus, name="About us"),
     path('admin/', admin.site.urls),
     path('api/', include("Accounts.urls")),
 ]
