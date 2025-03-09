@@ -26,17 +26,18 @@
             text-decoration: none;
             margin: 0 15px;
         }
-        #hero {
+        #resume {
             padding: 50px;
         }
-        input, button {
+        input, button, textarea {
             padding: 10px;
             margin: 10px;
             border: none;
             border-radius: 5px;
         }
-        input {
-            width: 250px;
+        input, textarea {
+            width: 100%;
+            max-width: 400px;
             background-color: #2a2a2a;
             color: #ffffff;
         }
@@ -45,30 +46,23 @@
             color: #000;
             cursor: pointer;
         }
-        #resume {
-            margin-top: 30px;
-        }
     </style>
 </head>
 <body>
     <header>
         <h1>Job Hunt Pro</h1>
         <nav>
-            <a href="#jobs">Find Jobs</a>
             <a href="#resume">Resume Analyzer</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
     
-    <section id="hero">
-        <h2>Find Your Dream Job & Optimize Your Resume</h2>
-        <input type="text" placeholder="Search jobs...">
-        <button>Search</button>
-    </section>
-    
     <section id="resume">
-        <h2>Upload Your Resume for Analysis</h2>
-        <input type="file" id="resumeUpload">
+        <h2>Upload Your Resume & Provide Job Description</h2>
+        <textarea id="jobDescription" rows="4" placeholder="Paste job description here..."></textarea>
+        <br>
+        <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx">
+        <br>
         <button onclick="analyzeResume()">Analyze</button>
         <p id="result"></p>
     </section>
