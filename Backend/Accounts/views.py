@@ -122,6 +122,10 @@ def Home(request):
     user_name = request.session.get('user_name', 'User')  # Retrieve from session
     return render(request, "Accounts/home.html", {"username": user_name})
 
+      
+def Landing_Page(request):
+    return render(request, "Accounts/landing_page.html",{'hide_navbar': True})
+
 
 #!### Logout Class to logout user ####
 #! logout thorugh post man shows logout sucessfull but in browser the user still seams logined 

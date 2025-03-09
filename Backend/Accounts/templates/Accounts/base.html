@@ -8,11 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    
+
     {% block style %}{% endblock style %}
-</head>
+    </head>
 <body>
-    <nav class="navbar">
+    {% if not hide_navbar %}
+    
+        <nav class="navbar">
         <div class="logo">{% block h2  %}<h2>MyWebsite</h2>{% endblock h2  %}</div>
         <div>
             <a href="{% url 'HomePage' %}">Home</a>
@@ -24,6 +26,7 @@
         </div>
     </nav>
     {% block body %}  body   {% endblock body %}
+    {% endif %}
     {% block script %}{% endblock script %}
 </body>
 

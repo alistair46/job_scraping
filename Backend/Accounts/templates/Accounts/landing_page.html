@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Finder & Resume Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #1e1e1e;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        #hero {
+            padding: 50px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            width: 250px;
+            background-color: #2a2a2a;
+            color: #ffffff;
+        }
+        button {
+            background-color: #ff9800;
+            color: #000;
+            cursor: pointer;
+        }
+        #resume {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Job Hunt Pro</h1>
+        <nav>
+            <a href="#jobs">Find Jobs</a>
+            <a href="#resume">Resume Analyzer</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <section id="hero">
+        <h2>Find Your Dream Job & Optimize Your Resume</h2>
+        <input type="text" placeholder="Search jobs...">
+        <button>Search</button>
+    </section>
+    
+    <section id="resume">
+        <h2>Upload Your Resume for Analysis</h2>
+        <input type="file" id="resumeUpload">
+        <button onclick="analyzeResume()">Analyze</button>
+        <p id="result"></p>
+    </section>
+</body>
+</html>
