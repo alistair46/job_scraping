@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Finder & Resume Analyzer</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    {% comment %} <link rel="stylesheet" href="styles.css"> {% endcomment %}
+    {% comment %} <script defer src="script.js"></script> {% endcomment %}
     <style>
         body {
             background-color: #121212;
@@ -58,13 +58,17 @@
     </header>
     
     <section id="resume">
-        <h2>Upload Your Resume & Provide Job Description</h2>
-        <textarea id="jobDescription" rows="4" placeholder="Paste job description here..."></textarea>
-        <br>
-        <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx">
-        <br>
-        <button onclick="analyzeResume()">Analyze</button>
+        <h2>Provide Job Description & Upload Your Resume</h2>
+        <form action= '' id="resumeForm" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <textarea name="job_description" placeholder="Paste job description here..." required></textarea>
+            <br>
+            <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+            <br>
+            <button type="submit">Analyze</button>
+        </form>
         <p id="result"></p>
     </section>
+    
 </body>
 </html>
