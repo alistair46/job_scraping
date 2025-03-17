@@ -1,0 +1,97 @@
+.
+├── Backend
+│   ├── Accounts
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-310.pyc
+│   │   │   ├── admin.cpython-310.pyc
+│   │   │   ├── apps.cpython-310.pyc
+│   │   │   ├── models.cpython-310.pyc
+│   │   │   ├── renderers.cpython-310.pyc
+│   │   │   ├── serializers.cpython-310.pyc
+│   │   │   ├── urls.cpython-310.pyc
+│   │   │   ├── utils.cpython-310.pyc
+│   │   │   └── views.cpython-310.pyc
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   │       ├── 0001_initial.cpython-310.pyc
+│   │   │       └── __init__.cpython-310.pyc
+│   │   ├── models.py
+│   │   ├── renderers.py
+│   │   ├── serializers.py
+│   │   ├── static
+│   │   │   ├── css
+│   │   │   │   └── main.css
+│   │   │   ├── images
+│   │   │   └── js
+│   │   ├── templates
+│   │   │   └── Accounts
+│   │   │       ├── aboutus.html
+│   │   │       ├── base.html
+│   │   │       ├── home.html
+│   │   │       ├── login.html
+│   │   │       └── signup.html
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   ├── utils.py
+│   │   └── views.py
+│   ├── Backend
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-310.pyc
+│   │   │   ├── settings.cpython-310.pyc
+│   │   │   ├── urls.cpython-310.pyc
+│   │   │   └── wsgi.cpython-310.pyc
+│   │   ├── asgi.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   ├── db.sqlite3
+│   ├── django_rest+jwt.postman_collection.json
+│   ├── jobs
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-310.pyc
+│   │   │   ├── admin.cpython-310.pyc
+│   │   │   ├── apps.cpython-310.pyc
+│   │   │   ├── models.cpython-310.pyc
+│   │   │   └── views.cpython-310.pyc
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── migrations
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   │       └── __init__.cpython-310.pyc
+│   │   ├── models.py
+│   │   ├── static
+│   │   │   ├── css
+│   │   │   ├── images
+│   │   │   └── js
+│   │   ├── templates
+│   │   │   └── jobs
+│   │   │       └── landing_page.html
+│   │   ├── tests.py
+│   │   └── views.py
+│   ├── manage.py
+│   ├── media
+│   │   └── resumes
+│   │       └── Alistair Francis.pdf
+│   └── requirements.txt
+├── LICENSE
+├── README.md
+├── core
+│   ├── INDEX.HTML
+│   ├── demo2.py
+│   ├── demo3.py
+│   ├── demo4.py
+│   ├── indeed.py
+│   ├── index.css
+│   ├── python_developer_pune.xlsx
+│   └── requirements.txt
+└── tree.txt
+
+27 directories, 68 files
