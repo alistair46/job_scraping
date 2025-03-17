@@ -170,3 +170,6 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 login2.html
+
+# folders to be excluded from uploading 
+media
